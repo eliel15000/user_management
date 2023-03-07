@@ -24,8 +24,7 @@ public class User {
 
     public User() {}
 
-    public User(long id, String firstName, String lastName, String emailId, String role) {
-        this.id = id;
+    public User(String firstName, String lastName, String emailId, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;

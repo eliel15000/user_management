@@ -3,16 +3,18 @@ package com.eliezercoding.usersystem.controller;
 import com.eliezercoding.usersystem.exception.ResourceNotFoundException;
 import com.eliezercoding.usersystem.model.User;
 import com.eliezercoding.usersystem.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "#####################")
+//@CrossOrigin(origins = "#####################")
 @RestController
 @RequestMapping("#############")
 public class UserController {
 
+    @Autowired
     UserRepository userRepository;
 
     // C - create user
