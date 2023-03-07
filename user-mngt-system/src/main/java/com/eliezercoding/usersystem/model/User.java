@@ -1,22 +1,16 @@
-package com.eliezercoding.usersystem.entity;
+package com.eliezercoding.usersystem.model;
 
-import javax.persistence.*;
+public class User {
 
-@Entity
-@Table(name = "users")
-public class UserEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
     private String lastName;
     private String emailId;
     private String role;
 
-    public UserEntity() {}
+    public User() {}
 
-    public UserEntity(long id, String firstName, String lastName, String emailId, String role) {
+    public User(long id, String firstName, String lastName, String emailId, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
