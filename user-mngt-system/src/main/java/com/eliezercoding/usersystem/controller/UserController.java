@@ -43,6 +43,7 @@ public class UserController {
         existingUser.setFirstName(userNewDetails.getFirstName());
         existingUser.setLastName(userNewDetails.getLastName());
         existingUser.setEmailId(userNewDetails.getEmailId());
+        existingUser.setRole(userNewDetails.getRole());
 
         return this.userRepository.save(existingUser);
     }
