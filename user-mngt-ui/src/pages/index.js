@@ -18,7 +18,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>HI</h1>
+        <h1 className=" text-center py-[30%]">{process.env.NEXT_PUBLIC_HI}</h1>
       </main>
     </>
   )
