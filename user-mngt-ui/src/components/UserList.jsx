@@ -37,19 +37,20 @@ const UserList = () => {
       }
       setLoading(false);
     }
-    // fetchData();
-    setUsers(userTest);
+    fetchData();
+    // setUsers(userTest);
 
-  }, [loading]);
+  }, []);
+  // }, [loading]);
 
-  const lala = () => {
-    setLoading(!loading);
-  }
+  // const lala = () => {
+  //   setLoading(!loading);
+  // }
   
 
   return (
     <div className="container mx-auto my-8">
-      <button onClick={lala}>Do It</button>
+      {/* <button onClick={lala}>Do It</button> */}
       <div className="flex shadow border-b overflow-x-auto">
         <table className="min-w-full">
           <thead className="bg-gray-50 border-b-4">
