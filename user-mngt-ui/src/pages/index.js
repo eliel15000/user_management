@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import UserList from "@/components/UserList";
+import AddUser from "@/components/AddUser";
 // import Image from "next/image"
 // import { Inter } from "next/font/google"
 // import styles from "@/styles/Home.module.css"
@@ -22,8 +23,9 @@ export default function Home() {
       <Navbar />
 
       <main>
+        <AddUser />
         <UserList />
-        <h1 className=" text-center my-72 text-4xl">{process.env.NEXT_PUBLIC_HI}</h1>
+        <h1 className=" text-center my-11 text-4xl">{process.env.NEXT_PUBLIC_HI}</h1>
       </main>
     </>
   )

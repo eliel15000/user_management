@@ -7,10 +7,6 @@ const styles = {
 
 const User = ({ user, index }) => {
 
-
-
-  console.log(index);
-
   return (
     <tr key={user.id} className={"border-b " + ((index % 2 == 0) ? "bg-neutral-100" : "bg-white")}>
       <td className={styles.tableData}>

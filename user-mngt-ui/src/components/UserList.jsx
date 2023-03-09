@@ -6,6 +6,14 @@ const styles = {
   tableHeaderAction: "text-center font-medium text-gray-500 uppercase tracking-wide py-3 px-6"
 }
 
+const userTest = [{
+  id: 1,
+  firstName: "Enzer",
+  lastName: "Aquino",
+  emailId: "eliezercoding@gmail.com",
+  role: "Manager"
+}]
+
 const UserList = () => {
 
   const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_BASE_URL;
@@ -29,12 +37,19 @@ const UserList = () => {
       }
       setLoading(false);
     }
-    fetchData();
-  }, []);
+    // fetchData();
+    setUsers(userTest);
+
+  }, [loading]);
+
+  const lala = () => {
+    setLoading(!loading);
+  }
   
 
   return (
     <div className="container mx-auto my-8">
+      <button onClick={lala}>Do It</button>
       <div className="flex shadow border-b overflow-x-auto">
         <table className="min-w-full">
           <thead className="bg-gray-50 border-b-4">
