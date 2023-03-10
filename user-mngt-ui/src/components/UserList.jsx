@@ -1,3 +1,4 @@
+import { useStateContext } from "@/context/StateContext";
 import React, { useEffect, useState } from "react";
 import User from "./User";
 
@@ -16,9 +17,11 @@ const userTest = [{
 
 const UserList = () => {
 
+  const { users, setUsers, loading, setLoading, responseUser } = useStateContext();
+
   const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_BASE_URL;
-  const [users, setUsers] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [users, setUsers] = useState([]);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,19 +41,24 @@ const UserList = () => {
       setLoading(false);
     }
     fetchData();
-    // setUsers(userTest);
 
-  }, []);
-  // }, [loading]);
+  }, [responseUser]);
 
-  // const lala = () => {
-  //   setLoading(!loading);
-  // }
-  
+  const editUser = (e, id) => {}
+
+  const deleteUser = (e, id)  => {
+    e.preventDefault();
+    fetch(`${USER_API_BASE_URL}/${id}`, {
+      method: "DELETE",
+    }).then((res) => {
+      setUsers((prevElement) => {
+        return prevElement.filter((user) => user.id !== id);
+      })
+    })
+  }
 
   return (
     <div className="container mx-auto my-8">
-      {/* <button onClick={lala}>Do It</button> */}
       <div className="flex shadow border-b overflow-x-auto">
         <table className="min-w-full">
           <thead className="bg-gray-50 border-b-4">
@@ -65,7 +73,13 @@ const UserList = () => {
           {!loading && (
             <tbody className="bg-white">
               {users?.map((user, index) => (
-                <User user={user} index={index} key={user.id} />
+                <User 
+                  key={user.id} 
+                  user={user} 
+                  index={index} 
+                  deleteUser={deleteUser} 
+                  editUser={editUser} 
+                />
               ))}
             </tbody>
           )}

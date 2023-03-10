@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { useStateContext } from "@/context/StateContext";
 
 const roles = [
   { name: "Viewer"},
@@ -11,27 +12,57 @@ const roles = [
 
 const AddUser = () => {
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState({
-    id: "",
-    firstName: "",
-    lastName: "",
-    emailId: "",
-    role: ""
-  })
+  const { isOpen, setIsOpen, user, setUser, setResponseUser } = useStateContext();
+
+  const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_BASE_URL;
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [user, setUser] = useState({
+  //   id: "",
+  //   firstName: "",
+  //   lastName: "",
+  //   emailId: "",
+  //   role: ""
+  // });
 
   const closeModal = () => {
     setIsOpen(false);
-  }
+  };
 
   const openModal = () => {
     setIsOpen(true);
-  }
+  };
 
   const handleChange = (e) => {
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value });
-  }
+  };
+
+  const saveUser = async (e) => {
+    e.preventDefault();
+    const response = await fetch(USER_API_BASE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+    if (!response.ok) { throw new Error("Something went wrong"); }
+    const _user = await response.json();
+    setResponseUser(_user);
+    reset(e);
+  };
+
+  const reset = (e) => {
+    e.preventDefault();
+    setUser({
+      id: "",
+      firstName: "",
+      lastName: "",
+      emailId: "",
+      role: ""
+    });
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -111,17 +142,24 @@ const AddUser = () => {
                           className="h-10 w-96 border mt-2 px-2 py-2"
                           onChange={(e) => handleChange(e)}
                         >
-                          {roles?.map((r, i) => (
+                          {roles.map((r, i) => (
                             <option key={i} value={r.name}>{r.name}</option>
                           ))}
                         </select>
                       </div>
 
-                      <div className="text-center h-14 mt-5 space-x-4 pt-4">
-                        <button className="rounded text-white font-semibold bg-green-500 hover:bg-green-700 py-2 px-6 w-28">
+                      <div 
+                      className="text-center h-14 mt-5 space-x-4 pt-4">
+                        <button 
+                          className="rounded text-white font-semibold bg-green-500 hover:bg-green-700 py-2 px-6 w-28" 
+                          onClick={saveUser}
+                        >
                           Save
                         </button>
-                        <button className="rounded text-white font-semibold bg-red-500 hover:bg-red-700 py-2 px-6 w-28">
+                        <button 
+                          className="rounded text-white font-semibold bg-red-500 hover:bg-red-700 py-2 px-6 w-28"
+                          onClick={reset}
+                        >
                           Cancel
                         </button>
                         <div></div>

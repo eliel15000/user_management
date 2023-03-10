@@ -5,7 +5,7 @@ const styles = {
   tableDataButton: "flex flex-auto justify-center space-x-2 py-2"
 }
 
-const User = ({ user, index }) => {
+const User = ({ user, index, deleteUser, editUser }) => {
 
   return (
     <tr key={user.id} className={"border-b " + ((index % 2 == 0) ? "bg-neutral-100" : "bg-white")}>
@@ -22,10 +22,18 @@ const User = ({ user, index }) => {
         <div className="">{user.role}</div>
       </td>
       <td className={styles.tableDataButton}>
-        <button type="button" className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded">
+        <button 
+          type="button" 
+          className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded"
+          onClick={(e, id) => editUser(e, user.id)}
+        >
           Edit
         </button>
-        <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <button 
+          type="button" 
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" 
+          onClick={(e, id) => deleteUser(e, user.id)}
+        >
           Delete
         </button>
         <button type="button" className="bg-teal-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
