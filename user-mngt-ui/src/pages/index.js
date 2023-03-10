@@ -17,7 +17,7 @@ export default function Home() {
         <meta name="keywords" content="HTML, CSS, JavaScript, React, NextJS, Java, Spring Boot, MySQL, AWS" />
         <meta name="author" content="Eliezer Encarnacion" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <link rel="icon" href="/user-gear.png" />
       </Head>
 
