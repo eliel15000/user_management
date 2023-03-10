@@ -1,4 +1,5 @@
 import { useStateContext } from "@/context/StateContext";
+import UserServices from "@/services/UserServices";
 import React, { useEffect, useState } from "react";
 import User from "./User";
 
@@ -26,18 +27,23 @@ const UserList = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      try {
-        const response = await fetch(USER_API_BASE_URL, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          }
-        });
-        const users = await response.json();
-        setUsers(users);
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   const response = await fetch(USER_API_BASE_URL, {
+      //     method: "GET",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     }
+      //   });
+      //   const users = await response.json();
+      //   setUsers(users);
+      // } catch (error) {
+      //   console.log(error);
+      // }
+
+      UserServices.getUsers().then((res) => {
+        setUsers(res.data);
+      })
+
       setLoading(false);
     }
     fetchData();
